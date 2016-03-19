@@ -22,12 +22,12 @@ sudo apt-get install -y autoconf g++ make openssl libssl-dev libcurl4-openssl-de
 sudo apt-get install -y libcurl4-openssl-dev pkg-config;
 sudo apt-get install -y libsasl2-dev;
 
-echo "Installing PHP7 mongoDb extenstion";
+echo "Installing PHP7 mongoDb extension";
 sudo pecl install mongodb;
 
-echo "adding the extenstion to your php.ini file";
-sudo echo  "extenstion = mongodb.so" >> /etc/php/7.0/cli/php.ini;
-sudo echo  "extenstion = mongodb.so" >> /etc/php/7.0/fpm/php.ini;
+echo "adding the extension to your php.ini file";
+sudo echo  "extension = mongodb.so" >> /etc/php/7.0/cli/php.ini;
+sudo echo  "extension = mongodb.so" >> /etc/php/7.0/fpm/php.ini;
 
 echo "restarting The nginx server";
 sudo service nginx restart && sudo service php7-fpm restart
