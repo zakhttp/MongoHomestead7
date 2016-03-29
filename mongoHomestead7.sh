@@ -1,4 +1,4 @@
-echo "MongoDB install  script with PHP7 & nginx [Laravel Homestead]
+echo "MongoDB install  script with PHP7 & nginx [Laravel Homestead]"
 echo "By Zakaria BenBakkar, @zakhttp, zakhttp@gmail.com"
 
 echo "Importing the public key used by the package management system";
