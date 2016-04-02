@@ -30,7 +30,7 @@ sudo echo  "extension = mongodb.so" >> /etc/php/7.0/cli/php.ini;
 sudo echo  "extension = mongodb.so" >> /etc/php/7.0/fpm/php.ini;
 
 echo "restarting The nginx server";
-sudo service nginx restart && sudo service php7-fpm restart
+sudo service nginx restart && sudo service php7.0-fpm restart
 
 
 
