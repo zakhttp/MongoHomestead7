@@ -1,5 +1,5 @@
 # Mongostead7
-A bash script to install monoDb on Laravel Homestead with php7
+A bash script to install mongoDb on Laravel Homestead with php7
 ## Usage
 Use the following commands:
 
