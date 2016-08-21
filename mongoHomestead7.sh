@@ -13,7 +13,6 @@ sudo apt-get update;
 echo "Install the latest version of MongoDb";
 sudo apt-get install -y mongodb-org;
 
-
 echo "Fixing the pecl errors list";
 sudo sed -i -e 's/-C -n -q/-C -q/g' `which pecl`;
 
@@ -29,8 +28,23 @@ echo "adding the extension to your php.ini file";
 sudo echo  "extension = mongodb.so" >> /etc/php/7.0/cli/php.ini;
 sudo echo  "extension = mongodb.so" >> /etc/php/7.0/fpm/php.ini;
 
+echo "Add mongodb.service file"
+cat >/etc/systemd/system/mongodb.service <<EOL
+[Unit]
+Description=High-performance, schema-free document-oriented database
+After=network.target
+
+[Service]
+User=mongodb
+ExecStart=/usr/bin/mongod --quiet --config /etc/mongod.conf
+
+[Install]
+WantedBy=multi-user.target
+EOL
+
+sudo systemctl start mongodb
+sudo systemctl status mongodb
+sudo systemctl enable mongodb
+
 echo "restarting The nginx server";
 sudo service nginx restart && sudo service php7.0-fpm restart
-
-
-
