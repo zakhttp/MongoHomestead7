@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 echo "MongoDB install  script with PHP7 & nginx [Laravel Homestead]"
 echo "By Zakaria BenBakkar, @zakhttp, zakhttp@gmail.com"
 
@@ -24,9 +26,18 @@ sudo apt-get install -y libsasl2-dev;
 echo "Installing PHP7 mongoDb extension";
 sudo pecl install mongodb;
 
-echo "adding the extension to your php.ini file";
-sudo echo  "extension = mongodb.so" >> /etc/php/7.0/cli/php.ini;
-sudo echo  "extension = mongodb.so" >> /etc/php/7.0/fpm/php.ini;
+echo "adding the extension to mods-available directory if it's not already there"
+mongoDbIni="/etc/php/7.0/mods-available/mongodb.ini"
+if [ ! -e $mongoDbIni ]; then
+    echo "; configuration for php mongodb module" | sudo tee $mongoDbIni
+    #it has to load after json module, otherwise it breaks
+    echo "; priority=30" | sudo tee -a $mongoDbIni
+    echo "extension = mongodb.so" | sudo tee -a $mongoDbIni
+fi
+
+echo "creating symbolic links for the ini file"
+sudo ln -s $mongoDbIni /etc/php/7.0/cli/conf.d/30-mongodb.ini
+sudo ln -s $mongoDbIni /etc/php/7.0/fpm/conf.d/30-mongodb.ini
 
 echo "Add mongodb.service file"
 cat >/etc/systemd/system/mongodb.service <<EOL
