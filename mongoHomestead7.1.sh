@@ -25,8 +25,8 @@ echo "Installing PHP7 mongoDb extension";
 sudo pecl install mongodb;
 
 echo "adding the extension to your php.ini file";
-sudo echo  "extension = mongodb.so" >> /etc/php/7.1/cli/php.ini;
-sudo echo  "extension = mongodb.so" >> /etc/php/7.1/fpm/php.ini;
+sudo touch /etc/php/7.1/mods-available/mongodb.ini
+sudo ln -s /etc/php/7.1/mods-available/mongodb.ini 30-mongodb.ini
 
 echo "Add mongodb.service file"
 cat >/etc/systemd/system/mongodb.service <<EOL
