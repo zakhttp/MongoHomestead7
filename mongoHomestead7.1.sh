@@ -26,6 +26,7 @@ sudo pecl install mongodb;
 
 echo "adding the extension to your php.ini file";
 sudo touch /etc/php/7.1/mods-available/mongodb.ini
+sudo echo "; configuration for php mongo module\n; priority=30\nextension=mongodb.so" >> /etc/php/7.1/mods-available/mongodb.ini
 sudo ln -s /etc/php/7.1/mods-available/mongodb.ini 30-mongodb.ini
 
 echo "Add mongodb.service file"
