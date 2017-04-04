@@ -24,7 +24,7 @@ sudo apt-get install -y libcurl4-openssl-dev pkg-config;
 sudo apt-get install -y libsasl2-dev;
 
 echo "Installing PHP7 mongoDb extension";
-sudo pecl install mongodb;
+sudo apt-get install php-mongodb;
 
 echo "adding the extension to mods-available directory if it's not already there"
 mongoDbIni="/etc/php/7.0/mods-available/mongodb.ini"
